@@ -101,6 +101,15 @@ function topThreeDonors() {
 console.log(topThreeDonors());
 
 // Problem 2: An anonymous 51st company wants to join the fundraiser, matching everyone else's donations. Add them to runners. (Do not mutuate.)
+let runnersAndMysteryDonor = runners.concat({
+  id: 51,
+  first_name: "",
+  last_name: "",
+  email: "",
+  shirt_size: "N/A",
+  donation: ticketPriceTotal,
+}); // Interesting that you can .concat() an object (/value?) which isn't itself an array!
+console.log(runnersAndMysteryDonor[runnersAndMysteryDonor.length - 1]);
 
 // Problem 3: You decide that companies whose names begin with "W" or end in "le" are morally reprehensible, and that it would be criminal to accept their money. Remove them from runners. (Do not mutuate.)
 
