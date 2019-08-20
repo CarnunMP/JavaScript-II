@@ -71,3 +71,16 @@ console.log(counterFactory().decrement(), counterFactory().decrement(), counterF
 // Hmm... seems to be working!
 
 console.log("———");
+
+// Some IIFE experiments:
+console.log((function () {
+  return 5 * 5;
+})());
+
+let iifeTestArray = ["Cat", "Dog", "Giant Man-Eating Lizard"];
+console.log(iifeTestArray.sort((function (a, b) {
+  if (a < b) {return -1}
+  if (b < a) {return 1}
+  return 0;
+})())); // These parentheses are getting a little ridiculous!
+// In any case, the above causes an error... because sort expects a function (as opposed to some returned value)?
