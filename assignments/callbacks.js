@@ -85,6 +85,22 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  let counts = {};
+  array.forEach(item => {
+    if (counts[item] === undefined) {
+      counts[item] = 1;
+    } else {
+      counts[item]++;
+    }
+  });
+
+  console.log(counts);
+  cb(Object.keys(counts));
 }
+
+let testArray = ["A", "A", "B", "C", "C", "C"];
+removeDuplicates(testArray, duplicatesRemoved => console.log(`Original array: [${testArray.toString()}]. Duplicates removed: [${duplicatesRemoved}]`));
+
+// A little hacky, but it works! :P
 
 console.log("———")
