@@ -112,5 +112,10 @@ let runnersAndMysteryDonor = runners.concat({
 console.log(runnersAndMysteryDonor[runnersAndMysteryDonor.length - 1]);
 
 // Problem 3: You decide that companies whose names begin with "W" or end in "le" are morally reprehensible, and that it would be criminal to accept their money. Remove them from runners. (Do not mutuate.)
+let runnersAfterPurge = runners.filter(runner => {
+  return !(runner.company_name[0] === "W" || runner.company_name.slice(-2) === "le");
+});
+console.log(runnersAfterPurge);
+// Looks good!
 
 console.log("———");
