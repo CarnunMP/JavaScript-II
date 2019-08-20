@@ -47,10 +47,27 @@ console.log(myCounter()); // Expected: 2
 // will refuse to go over the limit, and start back at 1.
 
 // ==== Challenge 4: Create a counter function with an object that can increment and decrement ====
+let counter = 0;
 const counterFactory = () => {
   // Return an object that has two methods called `increment` and `decrement`.
   // `increment` should increment a counter variable in closure scope and return it.
   // `decrement` should decrement the counter variable and return it.
+  let counterObject = {
+    increment: function() {
+      counter++;
+      // console.log(counter);
+      return counter;
+    },
+    decrement: function() {
+      counter--;
+      return counter;
+    }
+  }
+
+  return counterObject;
 };
+
+console.log(counterFactory().decrement(), counterFactory().decrement(), counterFactory().increment(), counterFactory().increment(), counterFactory().increment());
+// Hmm... seems to be working!
 
 console.log("———");
