@@ -88,10 +88,20 @@ console.log(ticketPriceTotal);
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1: You decide to give flowers to the top three donors. Produce an array of the top three runner objects, ranked in descending order of size of donation.
+function topThreeDonors() {
+  let donationsRankedDescending = runners.sort((runnerA, runnerB) => {
+    if (runnerA.donation < runnerB.donation) {return 1}
+    if (runnerA.donation > runnerB.donation) {return -1}
+    return 0
+  });
 
-// Problem 2
+  return donationsRankedDescending.slice(0, 3);
+}
+console.log(topThreeDonors());
 
-// Problem 3
+// Problem 2: An anonymous 51st company wants to join the fundraiser, matching everyone else's donations. Add them to runners. (Do not mutuate.)
+
+// Problem 3: You decide that companies whose names begin with "W" or end in "le" are morally reprehensible, and that it would be criminal to accept their money. Remove them from runners. (Do not mutuate.)
 
 console.log("———");
