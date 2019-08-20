@@ -1,9 +1,16 @@
+console.log("Closure:");
+
 // ==== Challenge 1: Write your own closure ====
 // Write a closure of your own creation.
 // Keep it simple! Remember a closure is just a function
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
-
+let yo = "yo";
+function makeYoYoyo() {
+  yo += "yo";
+}
+makeYoYoyo();
+console.log(yo);
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
@@ -31,3 +38,5 @@ const counterFactory = () => {
   // `increment` should increment a counter variable in closure scope and return it.
   // `decrement` should decrement the counter variable and return it.
 };
+
+console.log("———");
