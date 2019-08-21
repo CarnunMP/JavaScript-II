@@ -55,31 +55,67 @@ const runners = [
   { id: 50, first_name: "Shell", last_name: "Baine", email: "sbaine1d@intel.com", shirt_size: "M", company_name: "Gabtype", donation: 171 },
 ];
 
+console.log("Array-methods:");
+
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+runners.forEach(runner => {
+  let fullName = runner.first_name + " " + runner.last_name;
+  fullNames.push(fullName);
+});
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let firstNamesAllCaps = runners.map(runner => runner.first_name.toUpperCase());
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
-let runnersLargeSizeShirt = [];
+let runnersLargeSizeShirt = runners.filter(runner => {
+  return runner.shirt_size === "L";
+});
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
-let ticketPriceTotal = 0;
+let ticketPriceTotal = runners.reduce((total, runner) => {
+  return total + runner.donation;
+}, 0);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1: You decide to give flowers to the top three donors. Produce an array of the top three runner objects, ranked in descending order of size of donation.
+function topThreeDonors() {
+  let donationsRankedDescending = runners.sort((runnerA, runnerB) => {
+    if (runnerA.donation < runnerB.donation) {return 1}
+    if (runnerA.donation > runnerB.donation) {return -1}
+    return 0
+  });
 
-// Problem 2
+  return donationsRankedDescending.slice(0, 3);
+}
+console.log(topThreeDonors());
 
-// Problem 3
+// Problem 2: An anonymous 51st company wants to join the fundraiser, matching everyone else's donations. Add them to runners. (Do not mutuate.)
+let runnersAndMysteryDonor = runners.concat({
+  id: 51,
+  first_name: "",
+  last_name: "",
+  email: "",
+  shirt_size: "N/A",
+  donation: ticketPriceTotal,
+}); // Interesting that you can .concat() an object (/value?) which isn't itself an array!
+console.log(runnersAndMysteryDonor[runnersAndMysteryDonor.length - 1]);
+
+// Problem 3: You decide that companies whose names begin with "W" or end in "le" are morally reprehensible, and that it would be criminal to accept their money. Remove them from runners. (Do not mutuate.)
+let runnersAfterPurge = runners.filter(runner => {
+  return !(runner.company_name[0] === "W" || runner.company_name.slice(-2) === "le");
+});
+console.log(runnersAfterPurge);
+// Looks good!
+
+console.log("———");
